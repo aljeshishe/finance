@@ -7,3 +7,5 @@ dependencies:
 - pip:
   - click==7.0
   - alembic==1.4.1
+  - requests==2.23.0
+  - lxml==4.5.0
