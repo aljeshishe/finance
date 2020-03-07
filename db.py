@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import logging
 import sys
+from datetime import datetime
+
 from alembic.config import main
 import click
 import model
@@ -36,15 +38,24 @@ def drop():
 def test():
     from model import Item
     session = model.Session()
-    session.add(Item(name='alexey'))
+    item = Item()
+    item.insert_date_time = datetime.now()
+    item.eval = model.Evaluation.OVERVALUED
+    item.recmd_short = model.Recomendation.BUY
+    item.recmd_mid = model.Recomendation.SELL
+    item.recmd_long = model.Recomendation.HOLD
+    item.pattern = model.Pattern.Bearish
+    item.pattern_type = 'MACD'
+    item.est_return = 2
+    session.add(item)
     session.commit()
 
-    print(session.query(Item).filter_by(name='alexey').all())
+    print(session.query(Item).filter_by(eval=model.Evaluation.OVERVALUED).all())
 
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.DEBUG,
                         format='%(asctime)s.%(msecs)03d|%(levelname)-4.4s|%(thread)-6.6s|%(message)s',
                         datefmt='%Y/%m/%d %H:%M:%S',
-                        filename='db_template.log')
+                        filename='finance.log')
     cli()
