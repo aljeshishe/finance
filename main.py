@@ -141,7 +141,7 @@ def main():
     log.info('Started')
     with closing(result_writer(file_name=jsons_path / f'data_{now_str}.json')) as on_result:
         on_result.send(None)
-        tickers = get_tickers()[20]
+        tickers = get_tickers()
         for ticker in tickers:
             if ticker not in not_found:
                 processor.add(partial(crawl, ticker=ticker, on_result=on_result))
