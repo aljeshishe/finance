@@ -32,6 +32,6 @@ services:
         restart: always
         # depends_on:
         volumes:
-            - .:/home/jovyan
+            - .:/home/jovyan/work
         ports:
             - "28888:8888"
