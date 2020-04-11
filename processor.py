@@ -4,6 +4,7 @@ import logging
 
 log = logging.getLogger(__name__)
 
+
 class Processor:
     POISON_PILL = 'POISON_PILL'
 

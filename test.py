@@ -10,6 +10,7 @@ print('Testing how fast finance.yahoo.com blocks scraping')
 
 while True:
     try:
+        requests = requests.Session()
         r = requests.get('https://finance.yahoo.com/quote/ZYNE',
                          proxies=dict(https='94.135.230.170:443'),
                          headers={'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:73.0) Gecko/20100101 Firefox/73.0'}
