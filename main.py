@@ -13,10 +13,10 @@ import prequests as requests
 
 from generator import generator
 from processor import Processor
-from src.prequests.prequests.utils import as_tuple
 
 log = logging.getLogger(__name__)
 now = datetime.now()
+
 
 def get_perf_outlook(text):
     if '#ff4d52' in text:
@@ -25,6 +25,16 @@ def get_perf_outlook(text):
         return 'hold'
     if '#1ac567' in text:
         return 'buy'
+
+
+def as_tuple(list_tuple_item_or_none):
+    if list_tuple_item_or_none is None:
+        return ()
+    if not isinstance(list_tuple_item_or_none, (list, tuple)):
+        return (list_tuple_item_or_none,)
+
+    return list_tuple_item_or_none
+
 
 @contextmanager
 def context(verbose=True, ignore_exceptions=None, raise_exceptions=None, **kwargs):
